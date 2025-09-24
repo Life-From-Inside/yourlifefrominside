@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Life From Inside - Hero Image Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .hero-container {
+            width: 1200px;
+            height: 630px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #99816e 0%, #c4a88a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .logo-container {
+            margin-bottom: 30px;
+            max-width: 80%;
+        }
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+        }
+        .hero-text {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            max-width: 900px;
+        }
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin: 0 0 20px 0;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        .hero-text p {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .instructions {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container">
+        <div class="hero-bg">
+            <div class="logo-container">
+                <img src="life-from-inside-logo.png" alt="Life From Inside">
+            </div>
+            <div class="hero-text">
+                <h1>Transform Your Life From The Inside Out</h1>
+                <p>Empowering Visionaries & Creatives to Find Clarity and Purpose</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="instructions">
+        <h2>How to Save Your Hero Image</h2>
+        <ol>
+            <li>Right-click on the hero image above</li>
+            <li>Select "Save Image As..." or "Copy Image"</li>
+            <li>Save it as "social-hero.jpg" in your project folder</li>
+        </ol>
+        <p><strong>Note:</strong> For best results, ensure the image is saved as a high-quality JPG (1200×630 pixels).</p>
+    </div>
+</body>
+</html>
