@@ -35,6 +35,9 @@
   <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
   
+  <!-- Calendly badge widget styles -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  
   <!-- Preload critical resources -->
   <link rel="preload" href="life-from-inside-logo.png" as="image" type="image/png">
   <link rel="preload" href="zii-wacho-life-coach.jpg" as="image" type="image/jpeg">
@@ -297,6 +300,31 @@
 <title>Life From Inside | Personal Development & Life Coaching</title>
   <!-- Inline critical CSS -->
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- Calendly widget styles and script -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <script>
+    // Function to initialize Calendly popup
+    function initCalendlyPopup(e) {
+      e.preventDefault();
+      if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({
+          url: 'https://calendly.com/ziiwacho/deep-dive?hide_gdpr_banner=1&background_color=d0ae93&text_color=2b2b2b&primary_color=c87451'
+        });
+      }
+      return false;
+    }
+    
+    // Initialize Calendly popup for all booking buttons
+    document.addEventListener('DOMContentLoaded', function() {
+      const bookingButtons = document.querySelectorAll('.btn-booking, .btn[href*="calendly"]');
+      bookingButtons.forEach(button => {
+        button.addEventListener('click', initCalendlyPopup);
+        button.href = '#';
+      });
+    });
+  </script>
   <script>
     // Intersection Observer for scroll animations
     document.addEventListener('DOMContentLoaded', function() {
@@ -451,7 +479,7 @@
             For visionaries, creatives, and entrepreneurs seeking emotional healing, clarity, and nervous system reset. Transform burnout into creative flow and decisive action.
           </div>
           <div class="cta-row reveal r3">
-            <a class="btn btn-dark" href="https://calendly.com/ziiwacho/deep-dive?month=2025-09">BOOK 2 SESSIONS FOR THE PRICE OF 1</a>
+            <a class="btn btn-dark btn-booking" href="#">BOOK 2 SESSIONS FOR THE PRICE OF 1</a>
             <a class="btn btn-outline" href="#packages">LEARN MORE</a>
           </div>
         </div>
@@ -526,7 +554,7 @@
             <li>Ideal for resets, breakthroughs, pivotal moments</li>
           </ul>
           <p><strong>Cost:</strong> $USD250</p>
-          <a class="btn btn-dark" href="https://calendly.com/ziiwacho/deep-dive?month=2025-09">Book Your Deep Dive</a>
+          <a class="btn btn-dark btn-booking" href="#">Book Your Deep Dive</a>
         </div>
       </div>
       <div class="split-media">
