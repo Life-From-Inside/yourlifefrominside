@@ -573,15 +573,50 @@
           </div>
           
         </div>
-        <div class="hero-logo-right reveal r4">
-          <img 
-            src="life-from-inside-logo.png" 
-            alt="Life From Inside Coaching - Find Clarity and Purpose" 
-            width="420"
-            height="auto"
-            loading="lazy"
-          >
-        </div>
+      <div class="hero-carousel">
+  <!-- Slide 1: Logo with Text -->
+  <div class="carousel-slide active" data-slide="logo">
+    <div class="hero-logo-right">
+      <img 
+        src="life-from-inside-logo.png" 
+        alt="Life From Inside Coaching" 
+        width="420"
+        height="420"
+        loading="eager"
+      />
+      <p class="spiral-text">The Spiral of Return.<br>Regenerate your inner ecosystem.</p>
+    </div>
+  </div>
+
+  <!-- Slide 2: Testimonial 1 -->
+  <div class="carousel-slide" data-slide="testimonial">
+    <div class="testimonial-slide">
+      <blockquote>
+        "Over a year Zii helped me translate talents into grounded strategy. We raised funds, travelled to reconnect with roots, and I launched my acting career."
+        <cite>— Keagan, Artistic Career Growth, Circular Economics - Australia</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Slide 3: Testimonial 2 -->
+  <div class="carousel-slide" data-slide="testimonial">
+    <div class="testimonial-slide">
+      <blockquote>
+        "Zii is emotionally intelligent, culturally insightful, and deeply inspiring… He doesn't just coach—he changes lives."
+        <cite>— Emily, Cultural Intelligence and Leadership - United States</cite>
+      </blockquote>
+    </div>
+  </div>
+<!-- Slide 3: Testimonial 3 -->
+  <div class="carousel-slide" data-slide="testimonial">
+    <div class="testimonial-slide">
+      <blockquote>
+        "Conversations with Zii are truly inspiring. He sees beneath what we say by recognising how we say it. As a studying psychologist, I've been humbled and opened by his insights."
+        <cite>—Kasia, Psychology and Language Insight - Canada</cite>
+      </blockquote>
+    </div>
+  </div>
+</div>
       </div>
     </div>
   </section>
@@ -979,5 +1014,66 @@
       setTimeout(() => initLogo(false), 300);
     })();
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  let currentSlide = 0;
+  let slideInterval;
+
+  // Initialize dots
+  function initDots() {
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'carousel-dots';
+    
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+    
+    document.querySelector('.hero-carousel').appendChild(dotsContainer);
+  }
+
+  // Go to specific slide
+  function goToSlide(n) {
+    // Get all dots
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    // Update slides
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[n].classList.add('active');
+    
+    // Update dots
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[n]) dots[n].classList.add('active');
+    
+    currentSlide = n;
+  }
+
+  // Next slide
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % slides.length);
+  }
+
+  // Start autoplay
+  function startCarousel() {
+    slideInterval = setInterval(nextSlide, 5000); // 5 seconds per slide
+  }
+
+  // Pause on hover
+  const carousel = document.querySelector('.hero-carousel');
+  if (carousel) {
+    carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    carousel.addEventListener('mouseleave', startCarousel);
+  }
+
+  // Initialize
+  initDots();
+  startCarousel();
+  goToSlide(0); // Start with first slide
+});
+</script>
 </body>
 </html>
