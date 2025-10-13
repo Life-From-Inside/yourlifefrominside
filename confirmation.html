@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed | Life From Inside</title>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script>
+        // Check for Calendly confirmation in URL parameters
+        function checkCalendlyConfirmation() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventTypeId = urlParams.get('event_type_id');
+            const inviteeKey = urlParams.get('invitee_key');
+            
+            // If no Calendly parameters found, redirect to homepage
+            if (!eventTypeId || !inviteeKey) {
+                window.location.href = 'index.html';
+                return false;
+            }
+            
+            // Validate the booking (you can add more robust validation here)
+            // This is a basic check - you might want to implement server-side validation
+            // for production use
+            const validEventTypes = [
+                // Add your Calendly event type IDs here
+                'deep-dive',  // Example - replace with your actual event type IDs
+                'consultation'
+            ];
+            
+            if (!validEventTypes.some(type => eventTypeId.includes(type))) {
+                window.location.href = 'index.html';
+                return false;
+            }
+            
+            return true;
+        }
+    </script>
+    <style>
+        :root {
+            --primary-color: #c87451;
+            --text-color: #333;
+            --light-bg: #f9f5f0;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .confirmation-container {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+        
+        .checkmark {
+            font-size: 72px;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+        
+        .next-steps {
+            margin-top: 2rem;
+            text-align: left;
+            background: #f8f4ef;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2.5rem;
+        }
+        
+        .next-steps h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .next-steps ul {
+            padding-left: 1.2rem;
+        }
+        
+        .next-steps li {
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 600px) {
+            .confirmation-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="checkmark">✓</div>
+        <h1>Your Booking Is Confirmed!</h1>
+        <p>Thank you for choosing Life From Inside. We're excited to work with you on your journey to clarity and purpose.</p>
+        
+        <div class="next-steps">
+            <h3>What's Next?</h3>
+            <ul>
+                <li>You'll receive a confirmation email with your appointment details</li>
+                <li>Add the event to your calendar using the link in the email</li>
+                <li>Check your inbox for a pre-session questionnaire (if applicable)</li>
+                <li>If you need to reschedule, please do so at least 24 hours in advance</li>
+            </ul>
+        </div>
+        
+        <a href="index.html" class="btn">Back to Home</a>
+    </div>
+
+    <!-- Calendly integration -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script>
+        // Only show content if it's a valid Calendly confirmation
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!checkCalendlyConfirmation()) {
+                // Redirect will happen in the checkCalendlyConfirmation function
+                return;
+            }
+            
+            // Track successful booking
+            if (window.gtag) {
+                gtag('event', 'purchase', {
+                    'transaction_id': new Date().getTime(),
+                    'value': 250,
+                    'currency': 'USD',
+                    'items': [{
+                        'item_name': 'Deep Dive Session',
+                        'price': 250,
+                        'quantity': 1
+                    }]
+                });
+            }
+        });
+    </script>
+</body>
+</html>
